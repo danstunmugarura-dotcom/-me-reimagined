@@ -410,8 +410,8 @@ tick();setInterval(tick,1000);
 function sf(e){
   e.preventDefault();
   var b={first_name:document.getElementById('fn').value,last_name:document.getElementById('ln').value,email:document.getElementById('em').value,phone:document.getElementById('ph').value,interest:document.getElementById('it').value};
-  fetch('https://formspree.io/f/YOUR_FORM_ID',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b)})
-  .then(function(){show()}).catch(function(){show()});
+  fetch('https://formspree.io/f/xvzjpdoz',{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify(b)})
+  .then(function(r){if(r.ok){show()}else{alert('Something went wrong. Please email danstunmugarura@gmail.com directly.')}}).catch(function(){alert('Something went wrong. Please check your connection and try again.')});
 }
 function show(){document.getElementById('rf').style.display='none';document.getElementById('sm').style.display='block'}
 </script>
