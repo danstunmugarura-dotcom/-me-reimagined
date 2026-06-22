@@ -140,6 +140,69 @@ select option{background:var(--nd);color:var(--w)}
 .pb svg{width:28px;height:28px;fill:var(--g);margin-left:4px}
 .vl{font-size:13px;color:var(--mu);letter-spacing:1px}
 .vn{font-size:11px;color:var(--bo);letter-spacing:1px}
+/* ── ECOSYSTEM NAV ── */
+.eco-bar{background:var(--nd);border-bottom:1px solid var(--bo);padding:0 48px;display:flex;gap:0;overflow-x:auto}
+.eco-tab{padding:14px 22px;font-size:11px;letter-spacing:2px;color:var(--mu);text-transform:uppercase;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;transition:color .2s,border-color .2s;font-family:var(--san);font-weight:600}
+.eco-tab:hover{color:var(--g)}
+.eco-tab.active{color:var(--g);border-bottom-color:var(--g)}
+/* ── SPRINT ── */
+.sprint-hero{background:linear-gradient(135deg,var(--nd) 0%,#0D2545 100%);border-top:3px solid var(--g);padding:80px 48px 64px}
+.sprint-inner{max-width:880px;margin:0 auto}
+.sprint-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.3);padding:8px 16px;margin-bottom:28px}
+.sprint-badge-txt{font-size:10px;letter-spacing:3px;color:var(--g);font-weight:700;text-transform:uppercase}
+.sprint-price-tag{font-family:var(--ser);font-size:clamp(52px,6vw,80px);color:var(--g);line-height:1;display:block;margin-bottom:8px}
+.sprint-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;margin-top:48px}
+.sprint-phase{background:var(--ns);border-top:2px solid var(--g);padding:28px 24px;margin-bottom:12px}
+.sprint-phase-num{font-size:10px;letter-spacing:3px;color:var(--g);text-transform:uppercase;margin-bottom:8px}
+.sprint-phase-title{font-family:var(--ser);font-size:22px;margin-bottom:8px}
+.sprint-phase-week{font-size:11px;color:var(--mu);letter-spacing:1.5px;margin-bottom:10px}
+.sprint-phase-desc{font-size:13px;color:var(--mu);line-height:1.7}
+.sprint-inc{display:flex;flex-direction:column;gap:8px;margin-top:28px}
+.sprint-inc-row{display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--ns);border:1px solid var(--bo)}
+.sprint-inc-dot{width:6px;height:6px;background:var(--g);flex-shrink:0}
+.sprint-inc-txt{font-size:13px;color:var(--mu)}
+.sprint-cta-box{background:var(--g);padding:32px 28px;margin-top:28px}
+.sprint-cta-label{font-size:10px;letter-spacing:3px;color:var(--n);font-weight:700;text-transform:uppercase;margin-bottom:8px}
+.sprint-cta-price{font-family:var(--ser);font-size:48px;color:var(--n);line-height:1;margin-bottom:4px}
+.sprint-cta-sub{font-size:13px;color:rgba(7,20,40,.7);margin-bottom:20px}
+.sprint-btn{display:block;width:100%;padding:14px;text-align:center;background:var(--n);color:var(--g);font-family:var(--san);font-size:13px;font-weight:700;letter-spacing:.5px;text-decoration:none;border:none;cursor:pointer;transition:opacity .2s}
+.sprint-btn:hover{opacity:.85}
+.sprint-credit{font-size:11px;color:rgba(7,20,40,.6);margin-top:10px;line-height:1.6}
+/* ── TRIBE ── */
+.tribe-sec{background:var(--nm);border-top:1px solid var(--bo);padding:80px 48px}
+.tribe-inner{max-width:880px;margin:0 auto}
+.tribe-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;margin-top:48px}
+.tribe-card{background:var(--ns);border:1px solid var(--bo);padding:32px 28px}
+.tribe-card-icon{font-size:28px;margin-bottom:16px}
+.tribe-card-title{font-family:var(--ser);font-size:22px;margin-bottom:10px}
+.tribe-card-desc{font-size:14px;color:var(--mu);line-height:1.75}
+.tribe-what{display:flex;flex-direction:column;gap:8px;margin-top:32px}
+.tribe-what-row{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--bo)}
+.tribe-what-row:last-child{border-bottom:none}
+.tribe-what-dot{color:var(--g);font-size:16px;flex-shrink:0;margin-top:1px}
+.tribe-what-txt{font-size:13px;color:var(--mu);line-height:1.65}
+.tribe-cta-box{background:var(--ns);border:1px solid rgba(201,168,76,0.3);padding:32px 28px;margin-top:28px}
+.tribe-price{font-family:var(--ser);font-size:52px;color:var(--g);line-height:1}
+.tribe-price span{font-size:18px}
+.tribe-price-sub{font-size:13px;color:var(--mu);margin-top:4px;margin-bottom:20px}
+.tribe-btn{display:block;width:100%;padding:14px;text-align:center;background:var(--g);color:var(--n);font-family:var(--san);font-size:13px;font-weight:700;letter-spacing:.5px;text-decoration:none;border:none;cursor:pointer;transition:opacity .2s}
+.tribe-btn:hover{opacity:.85}
+/* ── ECOSYSTEM LADDER ── */
+.ladder{display:flex;flex-direction:column;gap:2px;margin-top:48px}
+.ladder-row{display:grid;grid-template-columns:140px 1fr auto;gap:24px;align-items:center;padding:18px 22px;background:var(--ns);border-left:3px solid var(--bo);transition:border-color .2s}
+.ladder-row.active{border-left-color:var(--g);background:rgba(201,168,76,0.05)}
+.ladder-tier{font-size:10px;letter-spacing:2px;color:var(--mu);text-transform:uppercase}
+.ladder-name{font-family:var(--ser);font-size:18px}
+.ladder-price{font-size:13px;color:var(--g);font-weight:700;white-space:nowrap}
+@media(max-width:768px){
+  .eco-bar{padding:0 20px}
+  .sprint-hero{padding:56px 20px 48px}
+  .sprint-grid{grid-template-columns:1fr}
+  .tribe-sec{padding:56px 20px}
+  .tribe-grid{grid-template-columns:1fr}
+  .ladder-row{grid-template-columns:1fr 1fr;gap:8px}
+  .ladder-tier{grid-column:1/-1}
+}
 footer{border-top:1px solid var(--bo);padding:36px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;background:var(--nd)}
 .fb{font-family:var(--ser);font-size:18px;letter-spacing:3px;color:var(--g)}
 .ft{font-size:11px;color:var(--mu);margin-top:3px}
@@ -185,7 +248,14 @@ footer{border-top:1px solid var(--bo);padding:36px 48px;display:flex;justify-con
   <a href="#register" class="nav-btn">Secure Your Place &rarr;</a>
 </nav>
 
-<div class="hero">
+<!-- Ecosystem nav bar -->
+<div class="eco-bar">
+  <a href="#me-reimagined" class="eco-tab active">Me Reimagined</a>
+  <a href="#sprint" class="eco-tab">Sprint</a>
+  <a href="#tribe" class="eco-tab">Tribe</a>
+</div>
+
+<div id="me-reimagined" class="hero">
   <div class="hero-left">
     <div class="hero-eyebrow">Code1 &nbsp;&middot;&nbsp; 12-Week Personal Transformation</div>
     <h1 class="hero-title">Me<br><span class="gd">Reimagined.</span></h1>
@@ -372,16 +442,147 @@ footer{border-top:1px solid var(--bo);padding:36px 48px;display:flex;justify-con
       <div class="fi">
         <select id="it" required>
           <option value="" disabled selected>I want to...</option>
-          <option value="waitlist">Join the waiting list &mdash; free</option>
-          <option value="deposit">Secure my place with a $50 deposit</option>
-          <option value="full">Pay in full &mdash; $497</option>
-          <option value="monthly">Monthly plan &mdash; $197 x 3</option>
+          <option value="tribe">Join the Tribe &mdash; $10/month</option>
+          <option value="sprint">Enrol in the Sprint &mdash; $197</option>
+          <option value="waitlist">Join the Me Reimagined waiting list &mdash; free</option>
+          <option value="deposit">Secure my Me Reimagined place &mdash; $50 deposit</option>
+          <option value="full">Me Reimagined &mdash; Pay in full $497</option>
+          <option value="monthly">Me Reimagined &mdash; Monthly $197 x 3</option>
         </select>
       </div>
       <button type="submit" class="fsub">Register My Interest &rarr;</button>
       <p class="fnote">No spam. No pressure. A personal response from the Code1 team within 48 hours.</p>
     </form>
     <div class="succ" id="sm">&#10003; &nbsp; You are on the list. The Code1 team will be in touch within 48 hours. Welcome to Me Reimagined.</div>
+  </div>
+</section>
+
+<!-- ── SPRINT SECTION ── -->
+<section id="sprint" class="sprint-hero">
+  <div class="sprint-inner">
+    <div class="sprint-badge"><span class="sprint-badge-txt">Code1 · CAP Sprint</span></div>
+    <h2 class="sec-h" style="font-family:'DM Serif Display',serif;font-size:clamp(38px,5vw,64px);">Me Reimagined<br><span style="color:#C9A84C">Sprint.</span></h2>
+    <p style="font-family:'DM Serif Display',serif;font-style:italic;color:#C9A84C;font-size:18px;margin-bottom:16px;">Focused. Fast. Real.</p>
+    <p style="font-size:16px;color:#8A9BAD;line-height:1.8;max-width:560px;margin-bottom:0">A 4-week transformation built on iPhilosophy, the 5D Drivers, and the CAP acquisition doctrine. Enough to change something real. Designed to prepare you for the full 12 weeks — or to stand completely on its own.</p>
+
+    <div class="sprint-grid">
+      <!-- Left: phases -->
+      <div>
+        <p class="eyebrow" style="margin-top:0">The 4-Week Journey</p>
+        <div class="sprint-phase">
+          <div class="sprint-phase-num">Pre-Sprint</div>
+          <div class="sprint-phase-title">iPhilosophy Intake</div>
+          <div class="sprint-phase-week">Before Week 1</div>
+          <div class="sprint-phase-desc">Your personalised foundation. A deep questionnaire that surfaces your archetype, current reality, blind spots, and definition of success. Everything that follows is built on this.</div>
+        </div>
+        <div class="sprint-phase">
+          <div class="sprint-phase-num">Phase 1</div>
+          <div class="sprint-phase-title">Discover</div>
+          <div class="sprint-phase-week">Week 1</div>
+          <div class="sprint-phase-desc">Who are you, really? Not the CV version. A forensic look at your patterns, energy, strengths, and blind spots. Self-awareness at the deepest level before anything else is built.</div>
+        </div>
+        <div class="sprint-phase">
+          <div class="sprint-phase-num">Phase 2</div>
+          <div class="sprint-phase-title">Diagnose</div>
+          <div class="sprint-phase-week">Week 2</div>
+          <div class="sprint-phase-desc">What is causing what is happening? Most people treat symptoms. Diagnose goes to the root — the identity-level belief running beneath the surface. The CAP doctrine enters here.</div>
+        </div>
+        <div class="sprint-phase">
+          <div class="sprint-phase-num">Phase 3</div>
+          <div class="sprint-phase-title">Design</div>
+          <div class="sprint-phase-week">Weeks 3 &amp; 4</div>
+          <div class="sprint-phase-desc">First design the human. Then upgrade the performance. Your Reimagined Identity Statement, 90-day commitment, and CAP acquisition approach — built intentionally, not by accident.</div>
+        </div>
+      </div>
+
+      <!-- Right: what's included + CTA -->
+      <div>
+        <p class="eyebrow" style="margin-top:0">What Is Included</p>
+        <div class="sprint-inc">
+          <div class="sprint-inc-row"><div class="sprint-inc-dot"></div><span class="sprint-inc-txt">iPhilosophy personalised intake questionnaire</span></div>
+          <div class="sprint-inc-row"><div class="sprint-inc-dot"></div><span class="sprint-inc-txt">9 video sessions — 3 per phase — taught by Danston</span></div>
+          <div class="sprint-inc-row"><div class="sprint-inc-dot"></div><span class="sprint-inc-txt">3 scorecards — Discover · Diagnose · Design</span></div>
+          <div class="sprint-inc-row"><div class="sprint-inc-dot"></div><span class="sprint-inc-txt">Downloadable workbook for all three phases</span></div>
+          <div class="sprint-inc-row"><div class="sprint-inc-dot"></div><span class="sprint-inc-txt">6 HI-AI prompts — 2 per phase</span></div>
+          <div class="sprint-inc-row"><div class="sprint-inc-dot"></div><span class="sprint-inc-txt">Submit questions to the Code1 team anytime</span></div>
+          <div class="sprint-inc-row"><div class="sprint-inc-dot"></div><span class="sprint-inc-txt">Private Sprint community — 4 weeks</span></div>
+          <div class="sprint-inc-row"><div class="sprint-inc-dot"></div><span class="sprint-inc-txt">Live Zoom graduation with Danston on completion</span></div>
+        </div>
+
+        <div class="sprint-cta-box">
+          <div class="sprint-cta-label">Sprint Investment</div>
+          <div class="sprint-cta-price"><sup style="font-size:22px;vertical-align:super">$</sup>197</div>
+          <div class="sprint-cta-sub">One payment &nbsp;&middot;&nbsp; 4 weeks &nbsp;&middot;&nbsp; Full access</div>
+          <a href="#register" class="sprint-btn" onclick="document.getElementById('it').value='sprint'">Enrol in the Sprint &rarr;</a>
+          <p class="sprint-credit">&#10003; &nbsp;Sprint graduates receive a $100 credit toward Me Reimagined</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TRIBE SECTION ── -->
+<section id="tribe" class="tribe-sec">
+  <div class="tribe-inner">
+    <p class="eyebrow">Code1 Tribe</p>
+    <h2 class="sec-h">The community<br>that is becoming.</h2>
+    <p class="sec-body">Not yet in the room — but moving toward it. Tribe is where the philosophy lives in small doses. Short-form insights, snippets of truth, and a growing community of people who are done performing and ready to express.</p>
+
+    <div class="tribe-grid">
+      <div>
+        <p class="eyebrow" style="margin-top:0">What Tribe Members Receive</p>
+        <div class="tribe-what">
+          <div class="tribe-what-row"><div class="tribe-what-dot">&#9670;</div><div class="tribe-what-txt">Weekly insight from Danston — philosophy in practice</div></div>
+          <div class="tribe-what-row"><div class="tribe-what-dot">&#9670;</div><div class="tribe-what-txt">Short-form snippets from the Me Reimagined and CAP frameworks</div></div>
+          <div class="tribe-what-row"><div class="tribe-what-dot">&#9670;</div><div class="tribe-what-txt">Exclusive access to the Code1 community group</div></div>
+          <div class="tribe-what-row"><div class="tribe-what-dot">&#9670;</div><div class="tribe-what-txt">Early access to new content, launches, and events</div></div>
+          <div class="tribe-what-row"><div class="tribe-what-dot">&#9670;</div><div class="tribe-what-txt">Monthly live drop-in — open questions with the Code1 team</div></div>
+          <div class="tribe-what-row"><div class="tribe-what-dot">&#9670;</div><div class="tribe-what-txt">Discounted access to Sprint and Me Reimagined when you are ready</div></div>
+        </div>
+      </div>
+
+      <div>
+        <p class="eyebrow" style="margin-top:0">Who Tribe Is For</p>
+        <div class="tribe-card">
+          <div class="tribe-card-icon">&#127757;</div>
+          <div class="tribe-card-title">The person becoming.</div>
+          <div class="tribe-card-desc">You are not ready for the full programme — or you want to experience the philosophy before you commit. Tribe is the door. It costs almost nothing. And it changes how you see yourself, one week at a time.</div>
+        </div>
+
+        <div class="tribe-cta-box">
+          <div class="tribe-price">$10<span>/mo</span></div>
+          <div class="tribe-price-sub">Cancel anytime &nbsp;&middot;&nbsp; No lock-in &nbsp;&middot;&nbsp; No pressure</div>
+          <a href="#register" class="tribe-btn" onclick="document.getElementById('it').value='tribe'">Join the Tribe &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ecosystem ladder -->
+    <p class="eyebrow" style="margin-top:64px">The Code1 Ecosystem</p>
+    <h3 style="font-family:'DM Serif Display',serif;font-size:28px;margin-bottom:8px">Every door leads somewhere.</h3>
+    <p style="font-size:15px;color:#8A9BAD;line-height:1.75;max-width:560px">One philosophy. Four tiers. Start wherever you are. The sequence does the rest.</p>
+    <div class="ladder">
+      <div class="ladder-row active">
+        <div class="ladder-tier">Entry</div>
+        <div class="ladder-name">Tribe</div>
+        <div class="ladder-price">$10/month</div>
+      </div>
+      <div class="ladder-row active">
+        <div class="ladder-tier">Focused</div>
+        <div class="ladder-name">Sprint</div>
+        <div class="ladder-price">$197</div>
+      </div>
+      <div class="ladder-row active">
+        <div class="ladder-tier">Flagship</div>
+        <div class="ladder-name">Me Reimagined</div>
+        <div class="ladder-price">$497 / $197×3</div>
+      </div>
+      <div class="ladder-row">
+        <div class="ladder-tier">Premium</div>
+        <div class="ladder-name">Executive</div>
+        <div class="ladder-price">By application</div>
+      </div>
+    </div>
   </div>
 </section>
 
