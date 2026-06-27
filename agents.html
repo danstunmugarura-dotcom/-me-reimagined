@@ -7,50 +7,99 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--n:#0B1F3A;--nm:#0D2545;--g:#C9A84C;--w:#FAFAF8;--mu:#8A9BAD;--bo:rgba(201,168,76,0.2);--ser:'DM Serif Display',serif;--san:'DM Sans',sans-serif}
+:root{--n:#0B1F3A;--nm:#0D2545;--ns:#132E52;--g:#C9A84C;--w:#FAFAF8;--mu:#8A9BAD;--bo:rgba(201,168,76,0.2);--ser:'DM Serif Display',serif;--san:'DM Sans',sans-serif}
 body{background:var(--n);color:var(--w);font-family:var(--san);line-height:1.6}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 48px;display:flex;justify-content:space-between;align-items:center;background:rgba(11,31,58,0.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--bo)}
 .nav-logo{font-family:var(--ser);font-size:20px;color:var(--w);text-decoration:none}.nav-logo span{color:var(--g)}
 .nav-sub{font-size:11px;color:var(--mu);letter-spacing:2px;text-transform:uppercase}
 @media(max-width:768px){nav{padding:16px 20px}}
-.welcome{background:var(--nm);border-bottom:3px solid var(--g);padding:100px 48px 60px;text-align:center;position:relative;overflow:hidden}
-.welcome::before{content:'';position:absolute;top:-60px;right:-60px;width:300px;height:300px;background:radial-gradient(circle,rgba(201,168,76,0.08) 0%,transparent 70%);pointer-events:none}
-.welcome-tag{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--g);font-weight:700;margin-bottom:16px}
-.welcome-head{font-family:var(--ser);font-size:clamp(36px,5vw,64px);color:var(--w);line-height:1;margin-bottom:16px}
-.welcome-head em{color:var(--g);font-style:italic}
-.welcome-sub{font-size:16px;color:var(--mu);max-width:560px;margin:0 auto}
-@media(max-width:768px){.welcome{padding:100px 24px 48px}}
-.container{max-width:880px;margin:0 auto;padding:0 48px}
+
+/* HERO */
+.hero{background:var(--nm);border-bottom:3px solid var(--g);padding:120px 48px 72px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-80px;right:-80px;width:400px;height:400px;background:radial-gradient(circle,rgba(201,168,76,0.07) 0%,transparent 70%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-80px;left:-80px;width:400px;height:400px;background:radial-gradient(circle,rgba(201,168,76,0.05) 0%,transparent 70%);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(201,168,76,0.1);border:1px solid var(--bo);padding:8px 18px;margin-bottom:28px}
+.hero-badge-dot{width:6px;height:6px;background:var(--g);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.hero-badge-text{font-size:10px;letter-spacing:3px;color:var(--g);font-weight:700;text-transform:uppercase}
+.hero-head{font-family:var(--ser);font-size:clamp(42px,6vw,80px);color:var(--w);line-height:1;margin-bottom:20px}
+.hero-head em{color:var(--g);font-style:italic;display:block}
+.hero-sub{font-size:16px;color:var(--mu);max-width:560px;margin:0 auto 40px}
+@media(max-width:768px){.hero{padding:100px 24px 56px}}
+
+/* DANSTON MESSAGE */
+.message-box{background:var(--ns);border-left:3px solid var(--g);padding:40px 48px;max-width:800px;margin:0 auto}
+.message-from{font-size:10px;letter-spacing:3px;color:var(--g);text-transform:uppercase;font-weight:700;margin-bottom:20px}
+.message-text{font-family:var(--ser);font-size:clamp(18px,2.5vw,24px);color:var(--w);line-height:1.6;font-style:italic;margin-bottom:20px}
+.message-sign{font-size:13px;color:var(--mu)}
+.message-sign strong{color:var(--w)}
+
+/* LAYOUT */
+.container{max-width:920px;margin:0 auto;padding:0 48px}
 @media(max-width:768px){.container{padding:0 24px}}
 section{padding:72px 0}
 .eyebrow{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--g);font-weight:700;display:block;margin-bottom:16px}
 .gold-line{width:40px;height:2px;background:var(--g);margin-bottom:28px}
 .sec-head{font-family:var(--ser);font-size:clamp(28px,3.5vw,42px);line-height:1.1;margin-bottom:16px}
+.sec-head em{color:var(--g);font-style:italic}
 .sec-body{font-size:15px;color:var(--mu);line-height:1.8;max-width:600px}
 hr.div{border:none;border-top:1px solid var(--bo);margin:0}
-.video-wrap{padding:56.25% 0 0 0;position:relative;margin-top:48px}
-.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%}
+
+/* STEPS */
 .steps{display:flex;flex-direction:column;gap:2px;margin-top:48px}
-.step{background:var(--nm);padding:28px 36px;display:grid;grid-template-columns:48px 1fr;gap:20px;align-items:start}
-.step-num{width:40px;height:40px;background:var(--g);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--n);flex-shrink:0}
+.step{background:var(--nm);padding:28px 36px;display:grid;grid-template-columns:56px 1fr;gap:20px;align-items:start;border-left:3px solid transparent;transition:border-color .3s}
+.step:hover{border-left-color:var(--g)}
+.step-num{width:44px;height:44px;background:var(--g);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:var(--n);flex-shrink:0;font-family:var(--ser)}
 .step-title{font-size:15px;font-weight:700;color:var(--w);margin-bottom:6px}
 .step-desc{font-size:13px;color:var(--mu);line-height:1.7}
+.step-action{display:inline-block;margin-top:10px;font-size:12px;color:var(--g);font-weight:600;text-decoration:none;border-bottom:1px solid var(--bo)}
+@media(max-width:600px){.step{grid-template-columns:1fr}}
+
+/* INCOME STREAMS */
 .streams{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:48px}
 .stream{background:var(--nm);padding:32px 28px;border-top:2px solid var(--g)}
-.stream-num{font-family:var(--ser);font-size:36px;color:rgba(201,168,76,0.2);margin-bottom:12px}
-.stream-title{font-size:14px;font-weight:700;color:var(--w);margin-bottom:8px}
-.stream-desc{font-size:12px;color:var(--mu);line-height:1.7}
-.stream-rate{font-family:var(--ser);font-size:28px;color:var(--g);margin-top:12px}
-@media(max-width:600px){.streams{grid-template-columns:1fr}.step{grid-template-columns:1fr}}
-.tools-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:48px}
-.tool{background:var(--nm);padding:24px 28px;display:flex;gap:14px;align-items:flex-start}
-.tool-dot{width:6px;height:6px;background:var(--g);flex-shrink:0;margin-top:6px}
-.tool-text{font-size:13px;color:var(--mu);line-height:1.65}
-@media(max-width:600px){.tools-grid{grid-template-columns:1fr}}
-.contact-box{background:var(--g);padding:48px;text-align:center;margin-top:48px}
-.contact-head{font-family:var(--ser);font-size:28px;color:var(--n);margin-bottom:8px}
-.contact-sub{font-size:13px;color:rgba(11,31,58,0.7);margin-bottom:24px}
-.contact-btn{display:inline-block;background:var(--n);color:var(--g);padding:14px 32px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-decoration:none;margin:4px}
+.stream-num{font-family:var(--ser);font-size:40px;color:rgba(201,168,76,0.15);line-height:1;margin-bottom:16px}
+.stream-title{font-size:14px;font-weight:700;color:var(--w);margin-bottom:8px;letter-spacing:.5px}
+.stream-desc{font-size:12px;color:var(--mu);line-height:1.75}
+.stream-rate{font-family:var(--ser);font-size:32px;color:var(--g);margin-top:16px}
+@media(max-width:600px){.streams{grid-template-columns:1fr}}
+
+/* RANK LADDER */
+.ranks{display:flex;flex-direction:column;gap:2px;margin-top:48px}
+.rank{background:var(--nm);padding:28px 32px;display:grid;grid-template-columns:180px 1fr 1fr;gap:24px;align-items:center;border-left:3px solid transparent;transition:border-color .3s}
+.rank:hover{border-left-color:var(--bo)}
+.rank.current{border-left-color:var(--g);background:var(--ns)}
+.rank-level{font-size:10px;letter-spacing:2px;color:var(--g);text-transform:uppercase;font-weight:700;margin-bottom:6px}
+.rank-title{font-family:var(--ser);font-size:20px;color:var(--w)}
+.rank-qualify{font-size:12px;color:var(--mu);line-height:1.6}
+.rank-earn{font-size:12px;color:var(--mu);line-height:1.6}
+.rank-earn strong{color:var(--g);display:block;font-size:14px;margin-bottom:4px}
+.rank.command{border-left-color:var(--g)}
+.rank.command .rank-level{color:var(--g)}
+.rank.command .rank-title{color:var(--g)}
+@media(max-width:768px){.rank{grid-template-columns:1fr}.rank-qualify,.rank-earn{display:none}}
+
+/* BENEFITS */
+.benefits-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:48px}
+.benefit{background:var(--nm);padding:24px 28px;display:flex;gap:14px;align-items:flex-start}
+.benefit-dot{width:6px;height:6px;background:var(--g);flex-shrink:0;margin-top:6px}
+.benefit-text{font-size:13px;color:var(--mu);line-height:1.65}
+@media(max-width:600px){.benefits-grid{grid-template-columns:1fr}}
+
+/* CONTACT */
+.contact-section{background:var(--nm);border:1px solid var(--bo);padding:56px 48px;margin-top:48px;text-align:center}
+.contact-head{font-family:var(--ser);font-size:32px;color:var(--w);margin-bottom:8px}
+.contact-head em{color:var(--g);font-style:italic}
+.contact-sub{font-size:14px;color:var(--mu);margin-bottom:32px;line-height:1.75}
+.contact-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-gold{background:var(--g);color:var(--n);padding:14px 32px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-decoration:none;transition:opacity .2s}
+.btn-gold:hover{opacity:.85}
+.btn-outline{background:transparent;color:var(--g);padding:14px 32px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-decoration:none;border:1px solid var(--bo);transition:border-color .2s}
+.btn-outline:hover{border-color:var(--g)}
+
+/* DISCLAIMER */
+.disclaimer{font-size:11px;color:var(--mu);font-style:italic;line-height:1.7;margin-top:32px;padding:16px 20px;border-left:2px solid var(--bo)}
+
 footer{border-top:1px solid var(--bo);padding:32px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
 .fl a{color:var(--mu);text-decoration:none;font-size:12px;margin-left:20px}
 .fl a:hover{color:var(--g)}
@@ -60,27 +109,28 @@ footer{border-top:1px solid var(--bo);padding:32px 48px;display:flex;justify-con
 <body>
 
 <nav>
-  <a href="/" class="nav-logo">CODE<span>1</span></a>
+  <a href="https://code1.one" class="nav-logo">CODE<span>1</span></a>
   <span class="nav-sub">Code1 Agent Programme</span>
 </nav>
 
-<div class="welcome">
-  <div class="welcome-tag">Welcome · You are a Code1 Agent</div>
-  <h1 class="welcome-head">Welcome to<br><em>the movement.</em></h1>
-  <p class="welcome-sub">Your account is active. Your marketing link is being set up. Your welcome package is on its way. Here is everything you need to get started today.</p>
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">
+    <div class="hero-badge-dot"></div>
+    <span class="hero-badge-text">Welcome · You are a Code1 Agent</span>
+  </div>
+  <h1 class="hero-head">Welcome to<br><em>the movement.</em></h1>
+  <p class="hero-sub">Your account is active. Your marketing link is being prepared. Your welcome package is on its way. Everything you need to get started is on this page.</p>
 </div>
 
-<!-- VIDEO -->
-<section>
+<!-- DANSTON MESSAGE -->
+<section style="padding:64px 0">
   <div class="container">
-    <span class="eyebrow">Watch First</span>
-    <div class="gold-line"></div>
-    <h2 class="sec-head">A message from Danston.</h2>
-    <p class="sec-body">Watch this before you do anything else. Danston walks you through the programme, what to expect, and exactly how to get started.</p>
-    <div class="video-wrap">
-      <iframe src="https://player.vimeo.com/video/1204512544?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Welcome to Code1"></iframe>
+    <div class="message-box">
+      <div class="message-from">A message from Danston · Founder, Code1</div>
+      <div class="message-text">"Welcome. You have just made one of the most important decisions of your life — not because of what you are going to earn, but because of who you are going to become in the process of earning it. The Code1 Agent Programme is not just a business opportunity. It is a development journey. You are going to grow here. And as you grow — your business grows with you. I am personally invested in your success. The team is ready. Let us build."</div>
+      <div class="message-sign"><strong>Danston Mugarura</strong> · Founder & CEO, Code1</div>
     </div>
-    <script src="https://player.vimeo.com/api/player.js"></script>
   </div>
 </section>
 
@@ -91,43 +141,44 @@ footer{border-top:1px solid var(--bo);padding:32px 48px;display:flex;justify-con
   <div class="container">
     <span class="eyebrow">Your First Steps</span>
     <div class="gold-line"></div>
-    <h2 class="sec-head">What to do<br>right now.</h2>
-    <p class="sec-body">Follow these steps in order. Each one sets you up for success.</p>
+    <h2 class="sec-head">What to do<br><em>right now.</em></h2>
+    <p class="sec-body">Follow these steps in order. Each one sets you up for success from day one.</p>
 
     <div class="steps">
       <div class="step">
         <div class="step-num">1</div>
         <div>
-          <div class="step-title">Watch the welcome video above</div>
-          <div class="step-desc">Danston introduces the programme and explains exactly how everything works. Do not skip this.</div>
+          <div class="step-title">Check your email for your personal marketing link</div>
+          <div class="step-desc">Your unique Code1 Agent link will arrive within 24 hours from the Code1 team. Every product purchased through that link earns you a Business Bonus automatically. Do not share any link until you receive your personal one.</div>
         </div>
       </div>
       <div class="step">
         <div class="step-num">2</div>
         <div>
-          <div class="step-title">Check your email for your personal marketing link</div>
-          <div class="step-desc">Your unique Code1 Agent link will arrive within 24 hours. Every product purchased through that link earns you a Business Bonus.</div>
+          <div class="step-title">Build your contact list — right now</div>
+          <div class="step-desc">Write down every person you know. Phone contacts. Social media connections. Work colleagues. Community members. Family. Friends. Do not filter. Do not prejudge. Write them all down. This is your starting asset and it is worth more than you think.</div>
         </div>
       </div>
       <div class="step">
         <div class="step-num">3</div>
         <div>
-          <div class="step-title">Build your contact list</div>
-          <div class="step-desc">Write down every person you know — phone contacts, social media, colleagues, community. This is your starting asset. Do not filter. Write them all down.</div>
+          <div class="step-title">Register for the next Code1 Masterclass</div>
+          <div class="step-desc">The masterclass is your most powerful marketing tool. Attend it first so you know what you are inviting people to. Then start inviting your network. Danston presents. The room converts. You earn.</div>
+          <a href="https://www.code1.one/#masterclass" target="_blank" class="step-action">Register for Masterclass &rarr;</a>
         </div>
       </div>
       <div class="step">
         <div class="step-num">4</div>
         <div>
-          <div class="step-title">Share your first Masterclass invitation</div>
-          <div class="step-desc">Invite your contacts to the next Code1 Masterclass — free, live, hosted by Danston. This is your most powerful marketing tool. Register link: code1.one/#masterclass</div>
+          <div class="step-title">Send your first invitation</div>
+          <div class="step-desc">Once you have your marketing link — send it to 10 people today. Not tomorrow. Today. Your goal is 10 active agents in your first line. The moment you hit 10 you are promoted to Senior Agent instantly. No waiting. No approval.</div>
         </div>
       </div>
       <div class="step">
         <div class="step-num">5</div>
         <div>
-          <div class="step-title">Get 10 agents — promote to Senior Agent instantly</div>
-          <div class="step-desc">Your first goal is 10 active agents in your first line. The moment you hit 10 — you are promoted to Senior Agent. Instantly. No waiting.</div>
+          <div class="step-title">Read the Code1 Agent Programme document</div>
+          <div class="step-desc">Your full compensation structure, rank ladder, earnings projections, and market strategy are in the Agent Programme document. The Code1 team will send this with your marketing link. Know your numbers before you invite anyone.</div>
         </div>
       </div>
     </div>
@@ -141,26 +192,102 @@ footer{border-top:1px solid var(--bo);padding:32px 48px;display:flex;justify-con
   <div class="container">
     <span class="eyebrow">Your Income</span>
     <div class="gold-line"></div>
-    <h2 class="sec-head">Three streams.<br>All running now.</h2>
+    <h2 class="sec-head">Three streams.<br><em>All active from day one.</em></h2>
 
     <div class="streams">
       <div class="stream">
         <div class="stream-num">01</div>
         <div class="stream-title">Thank You Bonus</div>
-        <div class="stream-desc">10% of every $12.99/month from every agent in your first line. Passive. Recurring. Grows as your team grows.</div>
+        <div class="stream-desc">10% of every $12.99/month from every agent in your first line. Passive. Recurring. Grows as your team grows. Never stops.</div>
         <div class="stream-rate">10%</div>
       </div>
       <div class="stream">
         <div class="stream-num">02</div>
         <div class="stream-title">Business Bonus</div>
-        <div class="stream-desc">Commission on every Code1 product introduced through your personal marketing link. Rises as you advance.</div>
+        <div class="stream-desc">Commission on every Code1 product introduced through your personal marketing link. Your rate rises as you advance through the levels.</div>
         <div class="stream-rate">10–20%</div>
       </div>
       <div class="stream">
         <div class="stream-num">03</div>
         <div class="stream-title">Lead Override</div>
-        <div class="stream-desc">5% on your team's product sales. Unlocks at Director level. Your organisation earns for you.</div>
+        <div class="stream-desc">5% on your team's product sales. Unlocks at Director level. At Command — 5% on your entire organisation's sales. The machine runs for you.</div>
         <div class="stream-rate">5%</div>
+      </div>
+    </div>
+
+    <div class="disclaimer">Income Disclaimer: The figures above are illustrative — not guaranteed earnings. Individual results depend on effort, network size, and activity. Code1 makes no income guarantees.</div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- RANK LADDER -->
+<section>
+  <div class="container">
+    <span class="eyebrow">Your Progression</span>
+    <div class="gold-line"></div>
+    <h2 class="sec-head">Four levels.<br><em>Every one earned — not bought.</em></h2>
+    <p class="sec-body">Promotion is instant. The moment you hit the number — you are promoted. No waiting. No approval. Your commission rate rises and new income streams unlock automatically.</p>
+
+    <div class="ranks">
+      <div class="rank current">
+        <div>
+          <div class="rank-level">Level 01 · You Are Here</div>
+          <div class="rank-title">Code1 Agent</div>
+        </div>
+        <div class="rank-qualify">
+          <strong style="color:var(--g);font-size:11px;letter-spacing:1px;text-transform:uppercase">Qualification</strong>
+          You have joined. You are active. Your first goal is 10 active agents in your first line.
+        </div>
+        <div class="rank-earn">
+          <strong>Your earnings now</strong>
+          Thank You Bonus 10% · Business Bonus 10%
+        </div>
+      </div>
+
+      <div class="rank">
+        <div>
+          <div class="rank-level">Level 02</div>
+          <div class="rank-title">Senior Agent</div>
+        </div>
+        <div class="rank-qualify">
+          <strong style="color:var(--g);font-size:11px;letter-spacing:1px;text-transform:uppercase">Qualification</strong>
+          10 active Code1 Agents in your first line. Promoted instantly.
+        </div>
+        <div class="rank-earn">
+          <strong>Unlocks</strong>
+          Business Bonus rises to 15% · Me Reimagined Sprint included
+        </div>
+      </div>
+
+      <div class="rank">
+        <div>
+          <div class="rank-level">Level 03</div>
+          <div class="rank-title">Director</div>
+        </div>
+        <div class="rank-qualify">
+          <strong style="color:var(--g);font-size:11px;letter-spacing:1px;text-transform:uppercase">Qualification</strong>
+          5 Senior Agents in your first line. Promoted instantly.
+        </div>
+        <div class="rank-earn">
+          <strong>Unlocks</strong>
+          Business Bonus 17.5% · Lead Override 5% first line · Me Reimagined Full included
+        </div>
+      </div>
+
+      <div class="rank command">
+        <div>
+          <div class="rank-level">Level 04 · The Summit</div>
+          <div class="rank-title">Command</div>
+        </div>
+        <div class="rank-qualify">
+          <strong style="color:var(--g);font-size:11px;letter-spacing:1px;text-transform:uppercase">Qualification</strong>
+          3 Directors in your first line. Inducted immediately.
+        </div>
+        <div class="rank-earn">
+          <strong>Unlocks</strong>
+          Business Bonus 20% · Group Override 5% entire organisation · Executive Programme · Command Black Box
+        </div>
       </div>
     </div>
   </div>
@@ -168,30 +295,34 @@ footer{border-top:1px solid var(--bo);padding:32px 48px;display:flex;justify-con
 
 <hr class="div">
 
-<!-- YOUR TOOLS -->
+<!-- WELCOME BENEFITS -->
 <section>
   <div class="container">
-    <span class="eyebrow">Your Tools</span>
+    <span class="eyebrow">Your Welcome Package</span>
     <div class="gold-line"></div>
-    <h2 class="sec-head">Everything you need<br>is coming.</h2>
-    <p class="sec-body">Within 24 hours you will receive everything below by email from the Code1 team.</p>
+    <h2 class="sec-head">What is coming<br><em>to you now.</em></h2>
+    <p class="sec-body">Within 24 hours the Code1 team will send you everything below by email.</p>
 
-    <div class="tools-grid">
-      <div class="tool"><div class="tool-dot"></div><div class="tool-text">Your personal Code1 marketing link — every sale tracked automatically</div></div>
-      <div class="tool"><div class="tool-dot"></div><div class="tool-text">Code1 Product Training — know what you are introducing</div></div>
-      <div class="tool"><div class="tool-dot"></div><div class="tool-text">Pitch decks — ready to use, branded, professional</div></div>
-      <div class="tool"><div class="tool-dot"></div><div class="tool-text">Marketing funnels — pre-built and optimised</div></div>
-      <div class="tool"><div class="tool-dot"></div><div class="tool-text">WhatsApp and email message templates — proven invitation prompts</div></div>
-      <div class="tool"><div class="tool-dot"></div><div class="tool-text">One Shot book — Danston's book on presence and first impressions</div></div>
-      <div class="tool"><div class="tool-dot"></div><div class="tool-text">Code1 Masterclass calendar — invite your network to live sessions</div></div>
-      <div class="tool"><div class="tool-dot"></div><div class="tool-text">Code1 Marketing Playbook — your complete exposure guide</div></div>
+    <div class="benefits-grid">
+      <div class="benefit"><div class="benefit-dot"></div><div class="benefit-text">One Shot — Danston's book on presence and first impressions · your first welcome benefit</div></div>
+      <div class="benefit"><div class="benefit-dot"></div><div class="benefit-text">Your personal Code1 marketing link — every sale tracked automatically to you</div></div>
+      <div class="benefit"><div class="benefit-dot"></div><div class="benefit-text">Code1 Product Training — full knowledge of every product you are introducing</div></div>
+      <div class="benefit"><div class="benefit-dot"></div><div class="benefit-text">Pitch decks — branded, professional, ready to use from day one</div></div>
+      <div class="benefit"><div class="benefit-dot"></div><div class="benefit-text">Marketing funnels — pre-built, optimised, conversion-tested</div></div>
+      <div class="benefit"><div class="benefit-dot"></div><div class="benefit-text">WhatsApp and email message templates — proven invitation prompts</div></div>
+      <div class="benefit"><div class="benefit-dot"></div><div class="benefit-text">Code1 Marketing Playbook — your complete guide to exposure and invitation</div></div>
+      <div class="benefit"><div class="benefit-dot"></div><div class="benefit-text">Code1 Agent Programme document — full compensation, rank structure, projections</div></div>
     </div>
 
-    <div class="contact-box">
-      <div class="contact-head">Questions? We are here.</div>
-      <div class="contact-sub">The Code1 team responds within 24 hours. Reach out any time.</div>
-      <a href="mailto:danstunmugarura@gmail.com" class="contact-btn">Email the Team &rarr;</a>
-      <a href="https://code1.one/#masterclass" target="_blank" class="contact-btn">Register for Masterclass &rarr;</a>
+    <!-- CONTACT BOX -->
+    <div class="contact-section">
+      <h3 class="contact-head">Questions?<br><em>We are here.</em></h3>
+      <p class="contact-sub">The Code1 team responds within 24 hours. Reach out any time — about your marketing link, your welcome package, or anything else you need to get started.</p>
+      <div class="contact-btns">
+        <a href="mailto:danstunmugarura@gmail.com" class="btn-gold">Email the Code1 Team &rarr;</a>
+        <a href="https://www.code1.one/#masterclass" target="_blank" class="btn-outline">Register for Masterclass &rarr;</a>
+        <a href="https://code1tribe.substack.com" target="_blank" class="btn-outline">Join the Newsletter &rarr;</a>
+      </div>
     </div>
   </div>
 </section>
@@ -201,8 +332,8 @@ footer{border-top:1px solid var(--bo);padding:32px 48px;display:flex;justify-con
 <footer>
   <div class="fb">CODE<span>1</span></div>
   <div class="fl">
-    <a href="/">Home</a>
-    <a href="https://code1.one" target="_blank">code1.one</a>
+    <a href="https://code1.one">code1.one</a>
+    <a href="https://me-reimagined.vercel.app">Me Reimagined</a>
     <a href="mailto:danstunmugarura@gmail.com">Contact</a>
   </div>
 </footer>
