@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Me Reimagined Full — Code1</title>
+<script>
+  var ref = document.referrer;
+  var allowed = ref.includes('stripe.com') || ref.includes('me-reimagined.vercel.app') || ref.includes('code1.one');
+  if (!allowed) { window.location.href = 'https://me-reimagined.vercel.app/#register'; }
+</script>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
