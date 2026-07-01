@@ -1,12 +1,586 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Me Reimagined — Code1 Platform</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Me Reimagined — Code1 Platform</title>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{background:#0D1B2A;font-family:Georgia,serif}
+    textarea{font-family:Arial,sans-serif}
+    button{font-family:Arial,sans-serif}
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { useState } = React;
+
+
+
+const C = {
+  navy:      "#0D1B2A",
+  navyMid:   "#1B2E45",
+  navyLight: "#243B55",
+  gold:      "#C9A84C",
+  goldDim:   "#8A6E2F",
+  white:     "#FFFFFF",
+  offWhite:  "#F4F1EA",
+  muted:     "#8A9BAD",
+  mutedDark: "#4A5A6A",
+  accent:    "#2E6FA3",
+  green:     "#2E8B57",
+  red:       "#C62828",
+  border:    "#1E3A55",
+};
+
+const DRIVERS = [
+  { id: 1, code: "D1", name: "Discover",  weeks: "1–2",   color: C.gold,   desc: "Who are you. What your data reveals." },
+  { id: 2, code: "D2", name: "Diagnose",  weeks: "3–4",   color: C.accent, desc: "What is causing your current results." },
+  { id: 3, code: "D3", name: "Discuss",   weeks: "5–6",   color: "#9C27B0", desc: "The honest conversation. Truth and decisions." },
+  { id: 4, code: "D4", name: "Design",    weeks: "7–9",   color: C.green,  desc: "Reimagine and architect the new you." },
+  { id: 5, code: "D5", name: "Deliver",   weeks: "10–12", color: C.red,    desc: "Execute, embody and express the reimagined person." },
+];
+
+const WEEKS = [
+  { id:1,  driver:1, title:"Who Are You?",                  phase:"D1 Discover · Part One",    videos:1, scorecard:50,  progress:100, locked:false },
+  { id:2,  driver:1, title:"Your Patterns & Energy",        phase:"D1 Discover · Part Two",    videos:1, scorecard:50,  progress:60,  locked:false },
+  { id:3,  driver:2, title:"Name the Friction",             phase:"D2 Diagnose · Part One",    videos:1, scorecard:60,  progress:0,   locked:false },
+  { id:4,  driver:2, title:"Root Cause & Strength",         phase:"D2 Diagnose · Part Two",    videos:1, scorecard:60,  progress:0,   locked:false },
+  { id:5,  driver:3, title:"Time, Tasks & Priorities",      phase:"D3 Discuss · Part One",     videos:1, scorecard:50,  progress:0,   locked:false },
+  { id:6,  driver:3, title:"People, Process & the 4S",      phase:"D3 Discuss · Part Two",     videos:1, scorecard:50,  progress:0,   locked:false },
+  { id:7,  driver:4, title:"Structure & Standards",         phase:"D4 Design · Part One",      videos:3, scorecard:120, progress:0,   locked:false },
+  { id:8,  driver:4, title:"Systems & Simplicity",          phase:"D4 Design · Part Two",      videos:2, scorecard:60,  progress:0,   locked:false },
+  { id:9,  driver:4, title:"Your Complete Operating System",phase:"D4 Design · Integration",   videos:1, scorecard:50,  progress:0,   locked:false },
+  { id:10, driver:5, title:"Embody",                        phase:"D5 Deliver · Part One",     videos:1, scorecard:50,  progress:0,   locked:false },
+  { id:11, driver:5, title:"Execute & Evaluate",            phase:"D5 Deliver · Part Two",     videos:1, scorecard:100, progress:0,   locked:false },
+  { id:12, driver:5, title:"Evolve & Final Integration",    phase:"D5 Deliver · The New You",  videos:1, scorecard:200, progress:0,   locked:false },
+];
+
+const IPHIL_QUESTIONS = [
+  { section:"Your Archetype", questions:[
+    "How would you describe yourself in three words — not your job title, but who you actually are?",
+    "What do people who know you best say about you when you leave the room?",
+    "What gives you energy so naturally that time disappears?",
+    "What drains you so consistently that you find yourself avoiding it?",
+    "When are you at your absolute best — what conditions bring out the highest version of you?",
+  ]},
+  { section:"Your Definition of Success", questions:[
+    "What does success look like for you — specifically, not generally?",
+    "What would your daily life look like if you achieved everything you are working toward?",
+    "Who in your life represents the kind of success you want — and what do you admire about them?",
+    "What would tell you — beyond any doubt — that you have made it?",
+  ]},
+  { section:"Your Current Reality", questions:[
+    "On a scale of 1–10, where are you right now in life overall?",
+    "What is working well that you want to protect and build on?",
+    "What is clearly not working — the things you know need to change?",
+    "What have you been tolerating that is beneath your standard?",
+    "What is the one thing that, if changed, would have the greatest positive impact on everything else?",
+  ]},
+  { section:"Your Challenges & Patterns", questions:[
+    "What challenge keeps returning — the one you thought you had resolved but keeps coming back?",
+    "Where do you consistently self-sabotage, even when you know better?",
+    "What story do you tell yourself that keeps you from the next level?",
+    "What are you most afraid of — honestly?",
+  ]},
+  { section:"Your Goals for This Programme", questions:[
+    "What do you want to have changed by the end of 12 weeks — specifically?",
+    "What does the reimagined version of you look like, think like, and act like?",
+    "What would make this programme worth every penny and every hour?",
+    "Who needs the reimagined you to show up — family, team, community, yourself?",
+    "What is your commitment to this process?",
+  ]},
+];
+
+function Logo({ size = 22 }) {
+  return (
+    <div style={{ display:"flex", alignItems:"center", gap:9 }}>
+      <div style={{ width:size+6, height:size+6, borderRadius:5, border:`1.5px solid ${C.gold}`, display:"flex", alignItems:"center", justifyContent:"center" }}>
+        <span style={{ fontSize:size*0.5, color:C.gold, fontWeight:"bold", fontFamily:"Arial,sans-serif" }}>C1</span>
+      </div>
+      <div>
+        <div style={{ fontSize:size*0.68, fontWeight:"bold", color:C.white, fontFamily:"Arial,sans-serif", letterSpacing:2, lineHeight:1.1 }}>CODE1</div>
+        <div style={{ fontSize:size*0.42, color:C.gold, fontFamily:"Arial,sans-serif", letterSpacing:1 }}>ME REIMAGINED</div>
+      </div>
+    </div>
+  );
+}
+
+function ProgressRing({ pct, size=52, stroke=4, color=C.gold }) {
+  const r=(size-stroke)/2, circ=2*Math.PI*r, dash=(pct/100)*circ;
+  return (
+    <svg width={size} height={size} style={{ transform:"rotate(-90deg)" }}>
+      <circle cx={size/2} cy={size/2} r={r} fill="none" stroke={C.border} strokeWidth={stroke}/>
+      <circle cx={size/2} cy={size/2} r={r} fill="none" stroke={color} strokeWidth={stroke}
+        strokeDasharray={`${dash} ${circ}`} strokeLinecap="round" style={{ transition:"stroke-dasharray 0.5s ease" }}/>
+    </svg>
+  );
+}
+
+function Bar({ pct, color=C.gold, h=4 }) {
+  return <div style={{ background:C.border, borderRadius:99, height:h, overflow:"hidden" }}>
+    <div style={{ width:`${pct}%`, height:"100%", background:color, borderRadius:99, transition:"width 0.4s ease" }}/>
+  </div>;
+}
+
+function Tag({ text, color=C.gold }) {
+  return <span style={{ fontSize:9, fontWeight:"bold", letterSpacing:1.5, fontFamily:"Arial,sans-serif", color, background:`${color}22`, border:`1px solid ${color}44`, padding:"2px 7px", borderRadius:3 }}>{text}</span>;
+}
+
+// ─── FREE ACCESS ENTRY ────────────────────────────────────
+function FreeEntry({ onEnter }) {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const inp = { width:"100%", background:"#1B2E45", border:`1px solid ${C.border}`, borderRadius:4, padding:"12px 14px", color:C.white, fontSize:14, fontFamily:"Arial,sans-serif", boxSizing:"border-box", outline:"none" };
+
+  return (
+    <div style={{ background:C.navy, minHeight:"100vh", color:C.white, fontFamily:"Georgia,serif", display:"flex", alignItems:"center", justifyContent:"center" }}>
+      <div style={{ maxWidth:400, width:"100%", padding:"0 24px" }}>
+        <div style={{ textAlign:"center", marginBottom:32 }}>
+          <Logo size={24}/>
+          <div style={{ marginTop:24, fontSize:26 }}>Welcome.</div>
+          <div style={{ fontSize:14, color:C.muted, fontFamily:"Arial,sans-serif", marginTop:8, lineHeight:1.6 }}>
+            You have been given complimentary access to Me Reimagined. Enter your details to begin.
+          </div>
+        </div>
+        <div style={{ display:"flex", flexDirection:"column", gap:14 }}>
+          <div>
+            <div style={{ fontSize:10, letterSpacing:1.5, color:C.muted, fontFamily:"Arial,sans-serif", marginBottom:6 }}>YOUR NAME</div>
+            <input style={inp} placeholder="First and last name" value={name} onChange={e=>setName(e.target.value)}/>
+          </div>
+          <div>
+            <div style={{ fontSize:10, letterSpacing:1.5, color:C.muted, fontFamily:"Arial,sans-serif", marginBottom:6 }}>EMAIL ADDRESS</div>
+            <input style={inp} placeholder="you@email.com" value={email} onChange={e=>setEmail(e.target.value)}/>
+          </div>
+          <button
+            onClick={()=>name.trim()&&email.trim()&&onEnter(name.trim())}
+            disabled={!name.trim()||!email.trim()}
+            style={{ background:name.trim()&&email.trim()?C.gold:C.mutedDark, border:"none", color:C.navy, padding:"14px", borderRadius:4, cursor:name.trim()&&email.trim()?"pointer":"not-allowed", fontSize:14, fontWeight:"bold", fontFamily:"Arial,sans-serif", marginTop:4 }}>
+            Enter Me Reimagined →
+          </button>
+          <div style={{ textAlign:"center", fontSize:11, color:C.mutedDark, fontFamily:"Arial,sans-serif" }}>
+            Complimentary access · Code1 Beta Programme
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── iPhilosophy INTAKE ───────────────────────────────────
+function IPhilosophy({ name, onComplete }) {
+  const [section, setSection] = useState(0);
+  const [answers, setAnswers] = useState({});
+  const totalQ = IPHIL_QUESTIONS.reduce((a,s)=>a+s.questions.length,0);
+  const answered = Object.keys(answers).filter(k=>answers[k]?.trim()).length;
+  const pct = Math.round((answered/totalQ)*100);
+  const setAns = (key, val) => setAnswers(a=>({...a,[key]:val}));
+  const currentSection = IPHIL_QUESTIONS[section];
+  const isLast = section === IPHIL_QUESTIONS.length - 1;
+
+  return (
+    <div style={{ background:C.navy, minHeight:"100vh", color:C.white, fontFamily:"Georgia,serif" }}>
+      <nav style={{ display:"flex", justifyContent:"space-between", alignItems:"center", padding:"12px 24px", borderBottom:`1px solid ${C.border}`, background:C.navyMid, position:"sticky", top:0, zIndex:10 }}>
+        <Logo size={18}/>
+        <div style={{ display:"flex", alignItems:"center", gap:12 }}>
+          <div style={{ fontSize:12, color:C.muted, fontFamily:"Arial,sans-serif" }}>{pct}% complete</div>
+          <div style={{ width:100 }}><Bar pct={pct}/></div>
+        </div>
+      </nav>
+      <div style={{ maxWidth:680, margin:"0 auto", padding:"32px 24px 64px" }}>
+        <div style={{ marginBottom:28 }}>
+          <div style={{ fontSize:11, letterSpacing:3, color:C.gold, fontFamily:"Arial,sans-serif", marginBottom:6 }}>iPHILOSOPHY INTAKE · THE FOUNDATION</div>
+          <div style={{ fontSize:28, marginBottom:8 }}>Know yourself first.</div>
+          <div style={{ fontSize:14, color:C.muted, fontFamily:"Arial,sans-serif", lineHeight:1.6 }}>
+            Welcome, {name}. Before Week 1 begins, complete this questionnaire. There are no right or wrong answers. Take 45–60 minutes. Answer from where you actually are — not where you wish you were.
+          </div>
+        </div>
+        <div style={{ display:"flex", gap:6, marginBottom:28, flexWrap:"wrap" }}>
+          {IPHIL_QUESTIONS.map((s,i)=>(
+            <button key={i} onClick={()=>setSection(i)} style={{ background:section===i?C.gold:"#0D1B2A", border:`1px solid ${section===i?C.gold:C.border}`, color:section===i?C.navy:C.muted, padding:"6px 12px", borderRadius:3, cursor:"pointer", fontSize:11, fontFamily:"Arial,sans-serif", fontWeight:section===i?"bold":"normal" }}>
+              {i+1}. {s.section}
+            </button>
+          ))}
+        </div>
+        <div style={{ background:C.navyMid, border:`1px solid ${C.border}`, borderTop:`3px solid ${C.gold}`, borderRadius:4, padding:"20px 22px", marginBottom:20 }}>
+          <div style={{ fontSize:11, letterSpacing:2.5, color:C.gold, fontFamily:"Arial,sans-serif", marginBottom:12 }}>PART {section+1} · {currentSection.section.toUpperCase()}</div>
+          {currentSection.questions.map((q, qi)=>{
+            const key = `${section}-${qi}`;
+            return (
+              <div key={qi} style={{ marginBottom:20 }}>
+                <div style={{ fontSize:13, color:C.white, fontFamily:"Arial,sans-serif", fontStyle:"italic", marginBottom:8, lineHeight:1.5 }}>{q}</div>
+                <textarea value={answers[key]||""} onChange={e=>setAns(key,e.target.value)}
+                  style={{ width:"100%", background:"#0D1B2A", border:`1px solid ${answers[key]?.trim()?C.gold:C.border}`, borderRadius:4, padding:"10px 12px", color:C.white, fontSize:13, fontFamily:"Arial,sans-serif", resize:"vertical", minHeight:72, outline:"none", boxSizing:"border-box" }}
+                  placeholder="Write your honest answer here…"/>
+              </div>
+            );
+          })}
+        </div>
+        <div style={{ display:"flex", justifyContent:"space-between", gap:12 }}>
+          <button onClick={()=>setSection(Math.max(0,section-1))} disabled={section===0} style={{ background:"none", border:`1px solid ${C.border}`, color:section===0?C.mutedDark:C.muted, padding:"11px 22px", borderRadius:4, cursor:section===0?"not-allowed":"pointer", fontSize:13, fontFamily:"Arial,sans-serif" }}>← Previous</button>
+          {isLast ? (
+            <button onClick={onComplete} style={{ background:C.gold, border:"none", color:C.navy, padding:"11px 28px", borderRadius:4, cursor:"pointer", fontSize:14, fontWeight:"bold", fontFamily:"Arial,sans-serif" }}>Complete iPhilosophy & Begin Week 1 →</button>
+          ) : (
+            <button onClick={()=>setSection(section+1)} style={{ background:C.gold, border:"none", color:C.navy, padding:"11px 28px", borderRadius:4, cursor:"pointer", fontSize:14, fontWeight:"bold", fontFamily:"Arial,sans-serif" }}>Next Section →</button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── DASHBOARD ────────────────────────────────────────────
+function Dashboard({ name, onSelectWeek, onSignOut, onMonthly }) {
+  const completedWeeks = WEEKS.filter(w=>w.progress===100).length;
+  const totalScore = 100;
+  const maxScore = WEEKS.reduce((a,w)=>a+w.scorecard,0);
+  const pct = Math.round((totalScore/maxScore)*100);
+
+  return (
+    <div style={{ background:C.navy, minHeight:"100vh", color:C.white, fontFamily:"Georgia,serif" }}>
+      <nav style={{ display:"flex", justifyContent:"space-between", alignItems:"center", padding:"12px 22px", borderBottom:`1px solid ${C.border}`, background:C.navyMid, position:"sticky", top:0, zIndex:10 }}>
+        <Logo size={18}/>
+        <div style={{ display:"flex", alignItems:"center", gap:14 }}>
+          <div style={{ fontSize:12, color:C.muted, fontFamily:"Arial,sans-serif" }}>Welcome, <span style={{ color:C.gold }}>{name}</span></div>
+          <button onClick={onMonthly} style={{ background:`${C.gold}22`, border:`1px solid ${C.gold}44`, color:C.gold, padding:"6px 14px", borderRadius:4, cursor:"pointer", fontSize:12, fontFamily:"Arial,sans-serif" }}>📅 Live Session</button>
+          <button onClick={onSignOut} style={{ background:"none", border:`1px solid ${C.border}`, color:C.muted, padding:"6px 14px", borderRadius:4, cursor:"pointer", fontSize:12, fontFamily:"Arial,sans-serif" }}>Sign Out</button>
+        </div>
+      </nav>
+      <div style={{ maxWidth:900, margin:"0 auto", padding:"24px 20px 48px" }}>
+        <div style={{ display:"grid", gridTemplateColumns:"1fr auto", gap:20, marginBottom:28, alignItems:"start" }}>
+          <div>
+            <div style={{ fontSize:11, letterSpacing:3, color:C.gold, fontFamily:"Arial,sans-serif", marginBottom:6 }}>YOUR DASHBOARD</div>
+            <div style={{ fontSize:28, marginBottom:4 }}>Me Reimagined.</div>
+            <div style={{ fontSize:13, color:C.muted, fontFamily:"Arial,sans-serif" }}>All weeks are unlocked. Begin your journey.</div>
+          </div>
+          <div style={{ background:C.navyMid, border:`1px solid ${C.border}`, borderRadius:8, padding:"14px 18px", display:"flex", flexDirection:"column", alignItems:"center" }}>
+            <div style={{ position:"relative", marginBottom:4 }}>
+              <ProgressRing pct={pct} size={60} stroke={5}/>
+              <div style={{ position:"absolute", inset:0, display:"flex", alignItems:"center", justifyContent:"center", fontSize:13, fontWeight:"bold", color:C.gold, fontFamily:"Arial,sans-serif" }}>{pct}%</div>
+            </div>
+            <div style={{ fontSize:9, letterSpacing:2, color:C.muted, fontFamily:"Arial,sans-serif" }}>OVERALL</div>
+          </div>
+        </div>
+        <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(130px,1fr))", gap:10, marginBottom:28 }}>
+          {[
+            { l:"Weeks Done", v:`${completedWeeks}/12`, c:C.green },
+            { l:"Score",      v:`${totalScore}pts`,     c:C.gold  },
+            { l:"Max Score",  v:`${maxScore}pts`,       c:C.muted },
+            { l:"Driver",     v:"D1 Discover",          c:C.accent},
+          ].map(s=>(
+            <div key={s.l} style={{ background:C.navyMid, border:`1px solid ${C.border}`, borderRadius:4, padding:"12px 14px" }}>
+              <div style={{ fontSize:20, fontWeight:"bold", color:s.c, fontFamily:"Arial,sans-serif" }}>{s.v}</div>
+              <div style={{ fontSize:10, color:C.muted, fontFamily:"Arial,sans-serif", marginTop:2 }}>{s.l}</div>
+            </div>
+          ))}
+        </div>
+        <div style={{ background:`${C.gold}11`, border:`1px solid ${C.gold}44`, borderRadius:4, padding:"14px 18px", marginBottom:28, display:"flex", justifyContent:"space-between", alignItems:"center", gap:12, flexWrap:"wrap" }}>
+          <div>
+            <div style={{ fontSize:12, color:C.gold, fontFamily:"Arial,sans-serif", fontWeight:"bold", letterSpacing:1 }}>📅 NEXT LIVE SESSION WITH DANSTON</div>
+            <div style={{ fontSize:14, color:C.white, fontFamily:"Arial,sans-serif", marginTop:3 }}>Tuesday 15 July 2026 · 7:00pm BST · Open to all participants</div>
+          </div>
+          <button onClick={onMonthly} style={{ background:C.gold, border:"none", color:C.navy, padding:"9px 18px", borderRadius:4, cursor:"pointer", fontSize:12, fontWeight:"bold", fontFamily:"Arial,sans-serif", flexShrink:0 }}>Register →</button>
+        </div>
+        {DRIVERS.map((driver,di)=>{
+          const driverWeeks = WEEKS.filter(w=>w.driver===driver.id);
+          return (
+            <div key={di} style={{ marginBottom:28 }}>
+              <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:10, paddingBottom:8, borderBottom:`1px solid ${C.border}` }}>
+                <div style={{ width:3, height:18, background:driver.color, borderRadius:2 }}/>
+                <div>
+                  <div style={{ fontSize:10, letterSpacing:2.5, color:driver.color, fontFamily:"Arial,sans-serif" }}>{driver.code} · WEEKS {driver.weeks}</div>
+                  <div style={{ fontSize:16, color:C.white }}>{driver.name}</div>
+                </div>
+              </div>
+              <div style={{ display:"flex", flexDirection:"column", gap:6 }}>
+                {driverWeeks.map(week=>(
+                  <button key={week.id} onClick={()=>onSelectWeek(week.id)}
+                    style={{ background:C.navyMid, border:`1px solid ${week.progress>0&&week.progress<100?driver.color+"66":C.border}`, borderRadius:4, padding:"12px 14px", cursor:"pointer", display:"flex", alignItems:"center", gap:12, textAlign:"left", width:"100%", transition:"border-color 0.2s" }}>
+                    <div style={{ width:32, height:32, borderRadius:"50%", flexShrink:0, background:week.progress===100?C.green:week.progress>0?driver.color:C.border, display:"flex", alignItems:"center", justifyContent:"center", fontSize:12, fontWeight:"bold", color:week.progress>0?C.navy:C.muted, fontFamily:"Arial,sans-serif" }}>
+                      {week.progress===100?"✓":week.id}
+                    </div>
+                    <div style={{ flex:1, minWidth:0 }}>
+                      <div style={{ display:"flex", gap:8, alignItems:"center", flexWrap:"wrap", marginBottom:3 }}>
+                        <div style={{ fontSize:14, color:C.white, fontFamily:"Arial,sans-serif", fontWeight:week.progress>0?"bold":"normal" }}>{week.title}</div>
+                        {week.progress>0&&week.progress<100 && <Tag text="IN PROGRESS" color={driver.color}/>}
+                        {week.progress===100 && <Tag text="COMPLETE" color={C.green}/>}
+                      </div>
+                      <div style={{ fontSize:11, color:C.muted, fontFamily:"Arial,sans-serif", marginBottom:week.progress>0?5:0 }}>
+                        {week.phase} · {week.videos} video{week.videos!==1?"s":""} · /{week.scorecard}pts
+                      </div>
+                      {week.progress>0 && <Bar pct={week.progress} color={week.progress===100?C.green:driver.color}/>}
+                    </div>
+                    <span style={{ color:C.mutedDark, fontSize:18, flexShrink:0 }}>›</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          );
+        })}
+        <div style={{ background:"#0a1520", border:`1px solid ${C.border}`, borderRadius:4, padding:"18px 20px", marginTop:8 }}>
+          <div style={{ fontSize:11, letterSpacing:2.5, color:C.gold, fontFamily:"Arial,sans-serif", marginBottom:8 }}>🎓 GRADUATION</div>
+          <div style={{ fontSize:14, color:C.white, fontFamily:"Arial,sans-serif", marginBottom:4 }}>Graduation sessions are announced once you complete Week 12.</div>
+          <div style={{ fontSize:13, color:C.muted, fontFamily:"Arial,sans-serif" }}>Complete the programme, register for the next graduation Zoom with Danston, and celebrate with your cohort.</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── WEEK VIEW ────────────────────────────────────────────
+function WeekView({ weekId, onBack }) {
+  const week = WEEKS.find(w=>w.id===weekId);
+  const driver = DRIVERS.find(d=>d.id===week.driver);
+  const [activeSection, setActiveSection] = useState(0);
+  const [quizAnswers, setQuizAnswers] = useState({});
+  const [quizSubmitted, setQuizSubmitted] = useState(false);
+  const [quizStarted, setQuizStarted] = useState(false);
+
+  const sections = [
+    { type:"video",    label:"VIDEO",     title:`Introducing ${driver.name}` },
+    { type:"teach",    label:"TEACH",     title:"Core Teaching" },
+    { type:"exercise", label:"EXERCISES", title:"Training Exercises" },
+    { type:"scorecard",label:"SCORECARD", title:`Week ${week.id} Scorecard`, score: weekId===1?42:weekId===2?38:null, outOf: week.scorecard },
+    { type:"ailab",    label:"HI-AI LAB", title:"Your AI Prompt" },
+    { type:"quiz",     label:"QUIZ",      title:"Week Knowledge Check" },
+    { type:"commit",   label:"COMMIT",    title:"My Week Commitment" },
+  ];
+
+  const typeColor = { video:C.gold, teach:C.accent, exercise:"#9C27B0", scorecard:C.green, ailab:C.gold, quiz:C.green, commit:C.gold };
+  const cur = sections[activeSection];
+
+  const quiz = [
+    { q:`What is the primary goal of Driver ${week.driver}: ${driver.name}?`, options:[`Complete a checklist of tasks`,`See yourself or your situation more clearly in this area`,`Get AI to do the work for you`,`Read about transformation`], correct:1 },
+    { q:"In the HI-AI approach, what does Human Intelligence provide that AI cannot?", options:["Speed","Pattern recognition","Judgement, values and wisdom","Data organisation"], correct:2 },
+    { q:"What does the Wet Log Philosophy mean for your development?", options:["Attack your weaknesses first","Strengthen your strengths first, then address weaknesses","Ignore weaknesses entirely","Focus only on new skills"], correct:1 },
+    { q:"What is the difference between a symptom and a root cause?", options:["A symptom is visible; a root cause is what creates it","They are the same thing","A symptom is deeper","Root causes are always external"], correct:0 },
+    { q:`Complete this: Information informs. ___`, options:["Education educates","Knowledge grows","Transformation reforms","AI accelerates"], correct:2 },
+  ];
+
+  const quizScore = quizSubmitted ? quiz.filter((_,i)=>quizAnswers[i]===quiz[i].correct).length : 0;
+
+  return (
+    <div style={{ background:C.navy, minHeight:"100vh", color:C.white, fontFamily:"Georgia,serif", display:"flex", flexDirection:"column" }}>
+      <nav style={{ display:"flex", alignItems:"center", gap:14, padding:"10px 18px", borderBottom:`1px solid ${C.border}`, background:C.navyMid, position:"sticky", top:0, zIndex:10, flexShrink:0 }}>
+        <button onClick={onBack} style={{ background:"none", border:"none", color:C.muted, cursor:"pointer", fontSize:22, lineHeight:1 }}>‹</button>
+        <Logo size={16}/>
+        <div style={{ flex:1, minWidth:0 }}>
+          <div style={{ fontSize:9, letterSpacing:2, color:driver.color, fontFamily:"Arial,sans-serif" }}>WEEK {week.id} · {driver.code} {driver.name.toUpperCase()}</div>
+          <div style={{ fontSize:13, color:C.white, fontFamily:"Arial,sans-serif", whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>{week.title}</div>
+        </div>
+      </nav>
+      <div style={{ display:"flex", flex:1, overflow:"hidden" }}>
+        <div style={{ width:220, flexShrink:0, background:"#0a1520", borderRight:`1px solid ${C.border}`, overflowY:"auto" }}>
+          <div style={{ padding:"14px 14px 6px" }}>
+            <div style={{ fontSize:9, letterSpacing:2, color:C.muted, fontFamily:"Arial,sans-serif" }}>WEEK {week.id} CONTENT</div>
+          </div>
+          <div style={{ padding:"0 6px 16px" }}>
+            {sections.map((s,i)=>(
+              <button key={i} onClick={()=>setActiveSection(i)} style={{ width:"100%", background:activeSection===i?C.navyMid:"none", border:"none", borderRadius:4, padding:"9px 10px", cursor:"pointer", display:"flex", gap:9, alignItems:"flex-start", textAlign:"left", marginBottom:2 }}>
+                <div style={{ width:6, height:6, borderRadius:"50%", background:typeColor[s.type]||C.muted, flexShrink:0, marginTop:6 }}/>
+                <div style={{ flex:1, minWidth:0 }}>
+                  <div style={{ fontSize:8, letterSpacing:1.5, color:typeColor[s.type]||C.muted, fontFamily:"Arial,sans-serif", marginBottom:1 }}>{s.label}</div>
+                  <div style={{ fontSize:12, color:activeSection===i?C.white:C.muted, fontFamily:"Arial,sans-serif", lineHeight:1.3 }}>{s.title}</div>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+        <div style={{ flex:1, overflowY:"auto", padding:"22px 26px" }}>
+          <div style={{ marginBottom:18 }}>
+            <Tag text={cur.label} color={typeColor[cur.type]||C.muted}/>
+            <h2 style={{ fontSize:22, fontWeight:"normal", margin:"8px 0 0" }}>{cur.title}</h2>
+          </div>
+          {cur.type==="video" && (
+            <div>
+              <div style={{ background:C.navyMid, borderRadius:6, aspectRatio:"16/9", display:"flex", alignItems:"center", justifyContent:"center", marginBottom:18, border:`1px solid ${C.border}`, position:"relative", overflow:"hidden" }}>
+                <div style={{ position:"absolute", inset:0, background:`linear-gradient(135deg, ${C.navy} 0%, ${C.navyLight} 100%)` }}/>
+                <div style={{ position:"relative", textAlign:"center" }}>
+                  <div style={{ width:60, height:60, borderRadius:"50%", background:driver.color, display:"flex", alignItems:"center", justifyContent:"center", margin:"0 auto 12px" }}>
+                    <span style={{ fontSize:22, color:C.navy, marginLeft:4 }}>▶</span>
+                  </div>
+                  <div style={{ fontSize:15, color:C.white, fontFamily:"Arial,sans-serif" }}>Week {week.id} — {week.title}</div>
+                  <div style={{ fontSize:12, color:driver.color, fontFamily:"Arial,sans-serif", marginTop:4 }}>Video coming 2 July 2026</div>
+                </div>
+              </div>
+              <div style={{ background:C.navyMid, border:`1px solid ${C.border}`, borderRadius:4, padding:"12px 16px" }}>
+                <div style={{ fontSize:10, letterSpacing:2, color:C.gold, fontFamily:"Arial,sans-serif", marginBottom:6 }}>BEFORE YOU CONTINUE</div>
+                <div style={{ fontSize:13, color:C.muted, fontFamily:"Arial,sans-serif", lineHeight:1.6 }}>Watch this video in full before moving to the next section. Take notes as you go — your best insights often come in the first 24 hours after watching.</div>
+              </div>
+            </div>
+          )}
+          {cur.type==="teach" && (
+            <div>
+              <div style={{ borderLeft:`3px solid ${driver.color}`, paddingLeft:16, marginBottom:18, fontSize:18, color:C.white, fontStyle:"italic", lineHeight:1.5 }}>
+                "First design the human. Then upgrade the performance."
+              </div>
+              <div style={{ fontSize:14, color:C.muted, fontFamily:"Arial,sans-serif", lineHeight:1.7, marginBottom:16 }}>
+                This week's teaching is drawn from Driver {driver.id}: {driver.name}. {driver.desc} Every concept in this section connects directly to the reflections and exercises that follow. Read with the intention to apply — not to collect.
+              </div>
+            </div>
+          )}
+          {cur.type==="exercise" && (
+            <div>
+              <div style={{ fontSize:14, color:C.muted, fontFamily:"Arial,sans-serif", lineHeight:1.6, marginBottom:20 }}>
+                These exercises are the work of {driver.name}. Honest answers only.
+              </div>
+              {["What are you discovering about yourself in this driver?","Where is the resistance coming from?","What would the reimagined version of you do differently starting today?"].map((q,i)=>(
+                <div key={i} style={{ marginBottom:16 }}>
+                  <div style={{ fontSize:10, letterSpacing:2, color:driver.color, fontFamily:"Arial,sans-serif", marginBottom:6 }}>REFLECTION {String(i+1).padStart(2,"0")}</div>
+                  <div style={{ fontSize:14, color:C.white, fontStyle:"italic", marginBottom:8, lineHeight:1.4 }}>{q}</div>
+                  <textarea style={{ width:"100%", background:C.navyMid, border:`1px solid ${C.border}`, borderRadius:4, padding:"10px 12px", color:C.white, fontSize:13, fontFamily:"Arial,sans-serif", resize:"vertical", minHeight:72, outline:"none", boxSizing:"border-box" }} placeholder="Write your reflection here…"/>
+                </div>
+              ))}
+            </div>
+          )}
+          {cur.type==="scorecard" && (
+            <div>
+              <div style={{ fontSize:13, color:C.muted, fontFamily:"Arial,sans-serif", marginBottom:16 }}>Rate each statement 1–10. Rate what is actually true right now.</div>
+              <div style={{ background:C.navyMid, border:`1px solid ${C.border}`, borderRadius:4, overflow:"hidden", marginBottom:16 }}>
+                <div style={{ background:C.navyLight, padding:"10px 16px", borderBottom:`1px solid ${C.border}` }}>
+                  <div style={{ fontSize:10, letterSpacing:2, color:driver.color, fontFamily:"Arial,sans-serif" }}>RATE EACH 1–10</div>
+                </div>
+                {["I have a clear picture of where I am in this area","I understand what is driving my current results","I can name the patterns that keep appearing","I know what needs to change and why","I am ready to take action on what this reveals"].map((s,i)=>(
+                  <div key={i} style={{ padding:"11px 16px", borderBottom:i<4?`1px solid ${C.border}`:"none", display:"flex", justifyContent:"space-between", alignItems:"center", gap:12 }}>
+                    <div style={{ fontSize:13, color:C.muted, fontFamily:"Arial,sans-serif" }}>{s}</div>
+                    <div style={{ fontSize:14, color:C.gold, fontFamily:"Arial,sans-serif", fontWeight:"bold", background:"#0D1B2A", padding:"4px 10px", borderRadius:3, minWidth:32, textAlign:"center" }}>___</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+          {cur.type==="ailab" && (
+            <div>
+              <div style={{ background:`${driver.color}11`, border:`1px solid ${driver.color}44`, borderRadius:4, padding:"16px 18px", marginBottom:18 }}>
+                <div style={{ fontSize:10, letterSpacing:2, color:driver.color, fontFamily:"Arial,sans-serif", marginBottom:8 }}>HI-AI PERFORMANCE LAB</div>
+                <div style={{ fontSize:13, color:C.muted, fontFamily:"Arial,sans-serif", lineHeight:1.6, marginBottom:14 }}>Human Intelligence leads. AI supports. Use the prompt below with any AI assistant.</div>
+                <div style={{ background:"#0D1B2A", border:`1px solid ${C.border}`, borderRadius:4, padding:"14px 16px", marginBottom:14 }}>
+                  <div style={{ fontSize:9, letterSpacing:2, color:C.gold, fontFamily:"Arial,sans-serif", marginBottom:8 }}>YOUR AI PROMPT FOR WEEK {week.id}</div>
+                  <div style={{ fontSize:13, color:C.white, fontFamily:"Arial,sans-serif", lineHeight:1.7, fontStyle:"italic" }}>
+                    "I am in Week {week.id} of my Me Reimagined programme, working through the {driver.name} driver. I am going to share my key reflections and scorecard results from this week. Once I share them, I want you to: 1. Identify the strongest patterns you notice. 2. Ask me two questions that go deeper than my surface answers. 3. Tell me the single most important thing I should focus on before moving to Week {week.id+1}."
+                  </div>
+                </div>
+              </div>
+              <div style={{ fontSize:10, letterSpacing:2, color:C.gold, fontFamily:"Arial,sans-serif", marginBottom:8 }}>MY KEY INSIGHT</div>
+              <textarea style={{ width:"100%", background:C.navyMid, border:`1px solid ${C.border}`, borderRadius:4, padding:"12px 14px", color:C.white, fontSize:13, fontFamily:"Arial,sans-serif", resize:"vertical", minHeight:100, outline:"none", boxSizing:"border-box" }} placeholder="Record your key insight after using this prompt…"/>
+            </div>
+          )}
+          {cur.type==="quiz" && (
+            <div>
+              {!quizStarted && !quizSubmitted && (
+                <div style={{ textAlign:"center", padding:"28px 0" }}>
+                  <div style={{ fontSize:44, marginBottom:14 }}>✏️</div>
+                  <div style={{ fontSize:20, marginBottom:6 }}>Week {week.id} Knowledge Check</div>
+                  <div style={{ fontSize:14, color:C.muted, fontFamily:"Arial,sans-serif", marginBottom:24 }}>5 questions · No time limit</div>
+                  <button onClick={()=>setQuizStarted(true)} style={{ background:C.gold, border:"none", color:C.navy, padding:"12px 32px", borderRadius:4, cursor:"pointer", fontSize:14, fontWeight:"bold", fontFamily:"Arial,sans-serif" }}>Begin Quiz</button>
+                </div>
+              )}
+              {quizStarted && !quizSubmitted && (
+                <div>
+                  {quiz.map((q,qi)=>(
+                    <div key={qi} style={{ marginBottom:20, background:C.navyMid, border:`1px solid ${C.border}`, borderRadius:4, padding:"14px 16px" }}>
+                      <div style={{ fontSize:10, color:C.muted, fontFamily:"Arial,sans-serif", marginBottom:5 }}>Q{qi+1}</div>
+                      <div style={{ fontSize:14, color:C.white, fontFamily:"Arial,sans-serif", marginBottom:12, lineHeight:1.4 }}>{q.q}</div>
+                      <div style={{ display:"flex", flexDirection:"column", gap:7 }}>
+                        {q.options.map((opt,oi)=>(
+                          <button key={oi} onClick={()=>setQuizAnswers(a=>({...a,[qi]:oi}))} style={{ background:quizAnswers[qi]===oi?`${C.gold}22`:"#0D1B2A", border:`1px solid ${quizAnswers[qi]===oi?C.gold:C.border}`, borderRadius:4, padding:"9px 12px", cursor:"pointer", display:"flex", gap:10, alignItems:"center", textAlign:"left" }}>
+                            <div style={{ width:16, height:16, borderRadius:"50%", border:`2px solid ${quizAnswers[qi]===oi?C.gold:C.mutedDark}`, background:quizAnswers[qi]===oi?C.gold:"none", flexShrink:0 }}/>
+                            <span style={{ fontSize:13, color:quizAnswers[qi]===oi?C.gold:C.muted, fontFamily:"Arial,sans-serif" }}>{opt}</span>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                  <button onClick={()=>setQuizSubmitted(true)} disabled={Object.keys(quizAnswers).length<quiz.length} style={{ background:Object.keys(quizAnswers).length===quiz.length?C.gold:C.mutedDark, border:"none", color:C.navy, padding:"12px", borderRadius:4, cursor:"pointer", fontSize:14, fontWeight:"bold", fontFamily:"Arial,sans-serif", width:"100%" }}>Submit</button>
+                </div>
+              )}
+              {quizSubmitted && (
+                <div>
+                  <div style={{ textAlign:"center", padding:"20px 0 28px" }}>
+                    <div style={{ fontSize:52, fontWeight:"bold", color:quizScore>=4?C.green:quizScore>=3?C.gold:C.red, fontFamily:"Arial,sans-serif" }}>{quizScore}/5</div>
+                    <div style={{ fontSize:16, color:C.white, marginTop:6 }}>{quizScore===5?"Perfect.":quizScore>=4?"Well done.":quizScore>=3?"Good effort.":"Review the teaching and try again."}</div>
+                  </div>
+                  {quiz.map((q,qi)=>{
+                    const ok=quizAnswers[qi]===q.correct;
+                    return <div key={qi} style={{ marginBottom:10, background:C.navyMid, border:`1px solid ${ok?C.green+"44":C.red+"44"}`, borderRadius:4, padding:"11px 14px" }}>
+                      <div style={{ display:"flex", gap:8, alignItems:"flex-start" }}>
+                        <span style={{ color:ok?C.green:C.red, flexShrink:0 }}>{ok?"✓":"✗"}</span>
+                        <div>
+                          <div style={{ fontSize:13, color:C.white, fontFamily:"Arial,sans-serif" }}>{q.q}</div>
+                          {!ok && <div style={{ fontSize:12, color:C.green, fontFamily:"Arial,sans-serif", marginTop:4 }}>Correct: {q.options[q.correct]}</div>}
+                        </div>
+                      </div>
+                    </div>;
+                  })}
+                </div>
+              )}
+            </div>
+          )}
+          {cur.type==="commit" && (
+            <div>
+              <div style={{ fontSize:14, color:C.muted, fontFamily:"Arial,sans-serif", lineHeight:1.6, marginBottom:22 }}>Write your commitments with precision. Vague intentions produce vague results.</div>
+              {[{l:"THE MOST IMPORTANT THING THIS WEEK REVEALED ABOUT ME:", c:driver.color},{l:`THE ONE THING I AM COMMITTING TO BEFORE WEEK ${week.id+1}:`, c:C.gold}].map((item,i)=>(
+                <div key={i} style={{ marginBottom:14, background:C.navyMid, border:`1px solid ${item.c}44`, borderRadius:4, padding:"14px 16px" }}>
+                  <div style={{ fontSize:9, letterSpacing:1.5, color:item.c, fontFamily:"Arial,sans-serif", marginBottom:8 }}>{item.l}</div>
+                  <textarea style={{ width:"100%", background:"#0D1B2A", border:`1px solid ${C.border}`, borderRadius:4, padding:"10px 12px", color:C.white, fontSize:13, fontFamily:"Arial,sans-serif", resize:"vertical", minHeight:64, outline:"none", boxSizing:"border-box" }} placeholder="Be specific…"/>
+                </div>
+              ))}
+              <button style={{ background:C.gold, border:"none", color:C.navy, padding:"13px", borderRadius:4, cursor:"pointer", fontSize:14, fontWeight:"bold", fontFamily:"Arial,sans-serif", width:"100%", marginTop:6 }}>
+                Save & Complete Week {week.id} ✓
+              </button>
+            </div>
+          )}
+          <div style={{ display:"flex", justifyContent:"space-between", marginTop:28, paddingTop:18, borderTop:`1px solid ${C.border}` }}>
+            <button onClick={()=>setActiveSection(Math.max(0,activeSection-1))} disabled={activeSection===0} style={{ background:"none", border:`1px solid ${C.border}`, color:activeSection===0?C.mutedDark:C.muted, padding:"9px 18px", borderRadius:4, cursor:activeSection===0?"not-allowed":"pointer", fontSize:13, fontFamily:"Arial,sans-serif" }}>← Previous</button>
+            <button onClick={()=>setActiveSection(Math.min(sections.length-1,activeSection+1))} disabled={activeSection===sections.length-1} style={{ background:activeSection===sections.length-1?C.mutedDark:C.gold, border:"none", color:C.navy, padding:"9px 22px", borderRadius:4, cursor:activeSection===sections.length-1?"not-allowed":"pointer", fontSize:13, fontWeight:"bold", fontFamily:"Arial,sans-serif" }}>Next →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── LIVE SESSION ─────────────────────────────────────────
+function LiveSession({ onBack }) {
+  return (
+    <div style={{ background:C.navy, minHeight:"100vh", color:C.white, fontFamily:"Georgia,serif" }}>
+      <nav style={{ display:"flex", justifyContent:"space-between", alignItems:"center", padding:"14px 24px", borderBottom:`1px solid ${C.border}` }}>
+        <Logo size={18}/><button onClick={onBack} style={{ background:"none", border:"none", color:C.muted, cursor:"pointer", fontSize:13, fontFamily:"Arial,sans-serif" }}>← Dashboard</button>
+      </nav>
+      <div style={{ maxWidth:620, margin:"40px auto", padding:"0 24px" }}>
+        <div style={{ fontSize:11, letterSpacing:3, color:C.gold, fontFamily:"Arial,sans-serif", marginBottom:16 }}>LIVE MONTHLY SESSION</div>
+        <div style={{ fontSize:30, marginBottom:6 }}>Live with Danston</div>
+        <div style={{ background:C.navyMid, border:`2px solid ${C.gold}44`, borderRadius:4, padding:"20px 22px", marginBottom:20 }}>
+          <div style={{ fontSize:11, letterSpacing:2, color:C.gold, fontFamily:"Arial,sans-serif", marginBottom:12 }}>NEXT SESSION</div>
+          <div style={{ fontSize:22, color:C.white, marginBottom:4 }}>Tuesday 15 July 2026</div>
+          <div style={{ fontSize:16, color:C.gold, fontFamily:"Arial,sans-serif", marginBottom:16 }}>7:00pm BST · 2:00pm EST · 11:00am PST</div>
+          <button style={{ background:C.gold, border:"none", color:C.navy, padding:"13px 32px", borderRadius:4, cursor:"pointer", fontSize:14, fontWeight:"bold", fontFamily:"Arial,sans-serif" }}>Register for This Session →</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── APP SHELL ────────────────────────────────────────────
+function App() {
+  const [view, setView] = useState("entry");
+  const [selectedWeek, setSelectedWeek] = useState(null);
+  const [participantName, setParticipantName] = useState("");
+
+  if (view==="entry")      return <FreeEntry onEnter={name=>{setParticipantName(name);setView("iphilosophy");}}/>;
+  if (view==="iphilosophy")return <IPhilosophy name={participantName} onComplete={()=>setView("dashboard")}/>;
+  if (view==="live")       return <LiveSession onBack={()=>setView("dashboard")}/>;
+  if (view==="week")       return <WeekView weekId={selectedWeek} onBack={()=>setView("dashboard")}/>;
+  return <Dashboard name={participantName} onSelectWeek={id=>{setSelectedWeek(id);setView("week");}} onSignOut={()=>setView("entry")} onMonthly={()=>setView("live")}/>;
+}
+
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App/>);
+  </script>
+</body>
 </html>
